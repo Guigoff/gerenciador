@@ -5,27 +5,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class NovaEmpresa
- */
-@WebServlet("/novaEmpresa")
-public class NovaEmpresa extends HttpServlet {
+
+@WebServlet("/alteraEmpresa")
+public class AlteraEmpresa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataAbertura = request.getParameter("dataAbertura");
+		String parameId = request.getParameter("id");
+		Integer id = Integer.valueOf(parameId);
 		
 		Date dataAbertura = null;
 		try {
@@ -35,18 +32,12 @@ public class NovaEmpresa extends HttpServlet {
 			throw new ServletException(e);
 		}
 		
-		Empresa empresa = new Empresa();
+		Banco banco = new Banco();
+		Empresa empresa = banco.buscaEmpresa(id);
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
 		
-		Banco banco = new Banco();
-		banco.adiciona(empresa);
-		
 		response.sendRedirect("listaEmpresas");
-		
-//		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
-//		request.setAttribute("empresa", empresa.getNome());
-//		rd.forward(request, response);
 	}
 
 }
