@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page
-	import="java.util.List, br.com.furla.gerenciador.servlet.Empresa"%>
+	import="java.util.List,br.com.furla.gerenciador.modelo.Empresa"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<c:url value="/mostraEmpresa?id=" var="linkServletMostrarEmpresa"/>
-<c:url value="/deletaEmpresa?id=" var="linkServletDeletaEmpresa"/>
+<c:url value="/home?acao=mostraEmpresa&id=" var="linkServletMostrarEmpresa"/>
+<c:url value="/home?acao=deletaEmpresa&id=" var="linkServletDeletaEmpresa"/>
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,4 +1,4 @@
-package br.com.furla.gerenciador.servlet;
+package br.com.furla.gerenciador.modelo;
 
 import java.util.Date;
 
