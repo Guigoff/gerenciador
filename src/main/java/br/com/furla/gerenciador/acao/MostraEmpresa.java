@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.furla.gerenciador.modelo.Banco;
 import br.com.furla.gerenciador.modelo.Empresa;
 
-public class Mostra {
-	public void run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class MostraEmpresa implements Acao {
+	public String run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String parametroId = request.getParameter("id");
 		Integer id = Integer.valueOf(parametroId);
 		
@@ -20,8 +20,7 @@ public class Mostra {
 		Empresa empresa = banco.buscaEmpresa(id);
 		
 		request.setAttribute("empresa", empresa);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
-		rd.forward(request, response);
+
+		return "forward:formAlteraEmpresa.jsp";
 	}
 }

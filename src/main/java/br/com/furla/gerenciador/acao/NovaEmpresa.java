@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.furla.gerenciador.modelo.Banco;
 import br.com.furla.gerenciador.modelo.Empresa;
 
-public class Nova {
+public class NovaEmpresa implements Acao {
 
-	public void run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataAbertura = request.getParameter("dataAbertura");
 		
@@ -35,7 +35,7 @@ public class Nova {
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
-		response.sendRedirect("home?acao=listaEmpresa");
+		return "redirect:home?acao=ListaEmpresa";
 		
 	}
 

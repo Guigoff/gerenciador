@@ -5,8 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<c:url value="/home?acao=mostraEmpresa&id=" var="linkServletMostrarEmpresa"/>
-<c:url value="/home?acao=deletaEmpresa&id=" var="linkServletDeletaEmpresa"/>
+<c:url value="/home?acao=MostraEmpresa&id=" var="linkServletMostrarEmpresa"/>
+<c:url value="/home?acao=DeletaEmpresa&id=" var="linkServletDeletaEmpresa"/>
 <!DOCTYPE html>
 <html>
 <head>

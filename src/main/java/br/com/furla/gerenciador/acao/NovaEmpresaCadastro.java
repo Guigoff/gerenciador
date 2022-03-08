@@ -11,16 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.furla.gerenciador.modelo.Banco;
 import br.com.furla.gerenciador.modelo.Empresa;
 
-public class Remove {
-	public void run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String parametroId = request.getParameter("id");
-		Integer id = Integer.valueOf(parametroId);
-		
-		Banco banco = new Banco();
-		banco.deletaEmpresa(id);
-		
-		response.sendRedirect("home?acao=listaEmpresa");
-		
+public class NovaEmpresaCadastro implements Acao {
+	public String run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		return "forward:formNovaEmpresa.jsp";
 	}
 }

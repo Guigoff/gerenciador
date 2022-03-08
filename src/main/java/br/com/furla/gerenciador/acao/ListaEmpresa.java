@@ -11,16 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.furla.gerenciador.modelo.Banco;
 import br.com.furla.gerenciador.modelo.Empresa;
 
-public class Lista {
+public class ListaEmpresa implements Acao {
 
-	public void run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Banco banco = new Banco();
 		List<Empresa> lista = banco.getEmpresas();
 		
 		request.setAttribute("empresas", lista);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
-		rd.forward(request, response);
+		return "forward:listaEmpresas.jsp";
 		
 	}
 
