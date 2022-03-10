@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.furla.gerenciador.acao.Acao;
 
@@ -22,6 +23,18 @@ public class Home extends HttpServlet {
 			throws ServletException, IOException {
 
 		String className = "br.com.furla.gerenciador.acao." + request.getParameter("acao");
+		
+		
+		HttpSession sessao = request.getSession();
+		boolean noLogin = sessao.getAttribute("usuarioLogado") == null ;
+		boolean actionProtect = !(request.getParameter("acao").equals("Login") || request.getParameter("acao").equals("LoginForm"));
+		
+		if (actionProtect && noLogin) {
+			response.sendRedirect("home?acao=LoginForm"); 
+			return;
+		}
+		
+		
 		String r;
 		try {
 			Class classe = Class.forName(className);

@@ -7,6 +7,7 @@
 
 <c:url value="/home?acao=MostraEmpresa&id=" var="linkServletMostrarEmpresa"/>
 <c:url value="/home?acao=DeletaEmpresa&id=" var="linkServletDeletaEmpresa"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,12 +16,19 @@
 </head>
 <body>
 
+
+	<br>
+	<br>
+	Usuário Logado: ${usuarioLogado.login}
+	<br>
+	<br>
 <ul>
 
 	<c:if test="${not empty empresa }">
 		Empresa ${ empresa } cadastrada com sucesso!
 	</c:if>
 	
+
 	<c:forEach items="${empresas}" var="empresa">
 
 		
@@ -32,6 +40,8 @@
 
 	</c:forEach>
 </ul>
+
+<c:import url="logout-parcial.jsp"/>
 
 </body>
 </html>
