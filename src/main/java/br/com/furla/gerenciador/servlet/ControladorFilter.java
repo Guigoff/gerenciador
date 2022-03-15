@@ -2,38 +2,30 @@ package br.com.furla.gerenciador.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.com.furla.gerenciador.acao.Acao;
 
-/**
- * Servlet implementation class Home
- */
-@WebServlet("/home")
-public class Home extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+//@WebFilter("/home")
+public class ControladorFilter implements Filter {
+       
 
+   
+	public void doFilter(ServletRequest ServletRequest, ServletResponse ServletResponse, FilterChain chain) throws IOException, ServletException {
+		
+		HttpServletRequest request = (HttpServletRequest) ServletRequest;
+		HttpServletResponse response = (HttpServletResponse) ServletResponse;
+		
 		String className = "br.com.furla.gerenciador.acao." + request.getParameter("acao");
-		
-		
-		HttpSession sessao = request.getSession();
-		boolean noLogin = sessao.getAttribute("usuarioLogado") == null ;
-		boolean actionProtect = !(request.getParameter("acao").equals("Login") || request.getParameter("acao").equals("LoginForm"));
-		
-		if (actionProtect && noLogin) {
-			response.sendRedirect("home?acao=LoginForm"); 
-			return;
-		}
-		
 		
 		String r;
 		try {
@@ -54,6 +46,9 @@ public class Home extends HttpServlet {
 		} else {
 			response.sendRedirect(config[1]);
 		}
+
 	}
+
+
 
 }
